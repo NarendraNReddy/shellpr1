@@ -9,7 +9,7 @@ read DB_SERVER_PASSWORD
 
 
 
-dnf install mysql-server -y &>>$LOGFILE
+dnf install mysql-serverrrr -y &>>$LOGFILE
 #VALIDATE $? "mysql server installation"
 
 
