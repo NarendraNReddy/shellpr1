@@ -11,70 +11,70 @@ read DB_SERVER_PASSWORD
 
 
 dnf module disable nodejs -y &>>$LOGFILE
-VALIDATE $? "Disable Node JS"
+#VALIDATE $? "Disable Node JS"
 
 
 dnf module enable nodejs:20 -y &>>$LOGFILE
-VALIDATE $? "Enable Node Js:20"
+#VALIDATE $? "Enable Node Js:20"
 
 
 dnf install nodejs -y &>>$LOGFILE
-VALIDATE $? "Installation Node JS "
+#VALIDATE $? "Installation Node JS "
 
 
 id expense &>>$LOGFILE
 if [ $? -ne 0 ];
 then
     useradd expense 
-    VALIDATE $? "Adding the user expense"
+    #VALIDATE $? "Adding the user expense"
 else 
     echo -e "User expense is already present ... $Y SKIPPING $N"    
 fi 
 
 
 mkdir -p /app &>>$LOGFILE
-VALIDATE $? "created app directory"
+#VALIDATE $? "created app directory"
 
 curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$LOGFILE
-VALIDATE $? "Download code to tmp folder"
+#VALIDATE $? "Download code to tmp folder"
 
 
 cd /app &>>$LOGFILE
-VALIDATE $? "Move to app folder"
+#VALIDATE $? "Move to app folder"
 
 rm -rf /app/* &>>$LOGFILE
-VALIDATE $? "Removed the app in app folder"
+#VALIDATE $? "Removed the app in app folder"
 
 unzip /tmp/backend.zip &>>$LOGFILE
-VALIDATE $? "Unzip the backend code"
+#VALIDATE $? "Unzip the backend code"
 
 
 npm install &>>$LOGFILE
-VALIDATE $? "NPM install for node js"
+#VALIDATE $? "NPM install for node js"
 
 cp -rf /home/ec2-user/shellpr1/backend.service /etc/systemd/system/backend.service &>>$LOGFILE
-VALIDATE $? "copying the backend service"
+#VALIDATE $? "copying the backend service"
 
 
 systemctl daemon-reload &>>$LOGFILE
-VALIDATE $? "daemon reload"
+#VALIDATE $? "daemon reload"
 
 
 systemctl start backend &>>$LOGFILE
-VALIDATE $? "backend starts"
+#VALIDATE $? "backend starts"
 
 
 systemctl enable backend &>>$LOGFILE
-VALIDATE $? "backend enable"
+#VALIDATE $? "backend enable"
 
 
 
 dnf install mysql -y  &>>$LOGFILE
-VALIDATE $? "instll mysql client"
+#VALIDATE $? "instll mysql client"
 
 
 mysql -h db.daws78s-nnr.online -uroot -p${DB_SERVER_PASSWORD} < /app/schema/backend.sql &>>$LOGFILE
-VALIDATE $? "Schema loading"
+#VALIDATE $? "Schema loading"
 
 systemctl restart backend &>>$LOGFILE
-VALIDATE $? "Restart backend"
+#VALIDATE $? "Restart backend"
