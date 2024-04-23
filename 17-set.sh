@@ -1,6 +1,6 @@
 #!/usr/bin
 
-#set -e 
+set -e 
 
 
 USERID=$(id -u)
