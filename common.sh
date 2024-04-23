@@ -3,6 +3,16 @@ TIMESTAMP=$(date +%F-%H-%M-%S)
 SCRIPT_NAME=$(echo $0 | cut -d "." -f1)
 LOGFILE=/tmp/$SCRIPT_NAME-$TIMESTAMP.log
 
+set -e 
+
+
+failure() {
+
+    echo "Failed at $1: $2"
+}
+trap 'failure ${LINENO} "$BASH_COMMAND"' ERR
+
+
 R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
