@@ -6,7 +6,7 @@ Y="\e[33m"
 BL="\e[34m"
 N="\e[0m"
 
-SOURCE_DIRECTORY=/tmp/apptt-logs
+SOURCE_DIRECTORY=/tmp/app-logs
 
 
 if [ -d $SOURCE_DIRECTORY ];
@@ -17,5 +17,8 @@ else
     exit 1   
 fi 
 
+FILES=$(find $SOURCE_DIRECTORY -name "*.log" -mtime +14)
+
+echo $FILES
 
 
