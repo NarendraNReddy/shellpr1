@@ -10,9 +10,12 @@ else
 fi
 
 
+
+
 FILES=$(find $SOURCE_DIRECTORY -name "*.log" -mtime +14)
 
 while IFS= read -r line
 do 
     rm -rf $line
 done <<< $FILES
+

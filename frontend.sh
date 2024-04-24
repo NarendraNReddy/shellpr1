@@ -13,6 +13,8 @@ systemctl enable nginx &>>$LOGFILE
 systemctl start nginx &>>$LOGFILE
 #VALIDATE $? "start nginx"
 
+
+
 rm -rf /usr/share/nginx/html/* &>>$LOGFILE
 #VALIDATE $? "remove nginx hmtl"
 
