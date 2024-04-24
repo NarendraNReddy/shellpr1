@@ -17,7 +17,7 @@ done <<< $DISK_USAGE
 
 echo -e $MESSAGE
 
-#echo -e "This is a test mail & Date $(date)" | mail -s "message" narendra.h1b@gmail.com
-
 echo -e "This is a test mail & Date $(date)" | mail -s "message" narendra.h1b@gmail.com
+
+#echo -e "This is a test mail & Date $(date)" | mail -s "message" narendra.h1b@gmail.com
 
