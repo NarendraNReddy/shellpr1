@@ -6,13 +6,16 @@ Y="\e[33m"
 BL="\e[34m"
 N="\e[0m"
 
-SOURCE_DIRECTORY=/tmp/app-logs
+SOURCE_DIRECTORY=/tmp/apptt-logs
 
 
 if [ -d $SOURCE_DIRECTORY ];
 then 
     echo "Folder exists"
 else 
-    echo "Folder does not exists"    
+    echo "Folder does not exists.Please create a folder" 
+    exit 1   
 fi 
+
+
 
