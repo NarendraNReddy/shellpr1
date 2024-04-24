@@ -12,4 +12,7 @@ fi
 
 FILES=$(find $SOURCE_DIRECTORY -name "*.log" -mtime +14)
 
-echo $FILES
+while IFS= read -r lines
+do 
+    echo "$line"
+done <<< $FILES
